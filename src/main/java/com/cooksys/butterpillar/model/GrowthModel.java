@@ -43,16 +43,36 @@ public class GrowthModel {
 	
 	@Override
 	public String toString() {
-		return null; // TODO: to be implemented
+		return "GrowthModel [lengthToWingspan=" + lengthToWingspan + ", leavesEatenToWeight=" + leavesEatenToWeight
+				+ "]";
 	}
 	
 	@Override
-	public boolean equals(Object o) {
-		if (o instanceof GrowthModel) {
-			return this.equals((GrowthModel) o);
-		} else {
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(leavesEatenToWeight);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(lengthToWingspan);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		}
+		if (getClass() != obj.getClass())
+			return false;
+		GrowthModel other = (GrowthModel) obj;
+		if (Double.doubleToLongBits(leavesEatenToWeight) != Double.doubleToLongBits(other.leavesEatenToWeight))
+			return false;
+		if (Double.doubleToLongBits(lengthToWingspan) != Double.doubleToLongBits(other.lengthToWingspan))
+			return false;
+		return true;
 	}
 
 }

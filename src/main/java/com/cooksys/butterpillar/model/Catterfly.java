@@ -29,16 +29,35 @@ public class Catterfly {
 	
 	@Override
 	public String toString() {
-		return null; // TODO: to be implemented
+		return "Catterfly [wingspan-" + wingspan + ", weight-" + weight + "]"; // TODO: to be implemented
 	}
 	
 	@Override
-	public boolean equals(Object o) {
-		if (o instanceof Catterfly) {
-			return this.equals((Catterfly) o);
-		} else {
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(weight);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(wingspan);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		}
+		if (getClass() != obj.getClass())
+			return false;
+		Catterfly other = (Catterfly) obj;
+		if (Double.doubleToLongBits(weight) != Double.doubleToLongBits(other.weight))
+			return false;
+		if (Double.doubleToLongBits(wingspan) != Double.doubleToLongBits(other.wingspan))
+			return false;
+		return true;
 	}
 
 }
